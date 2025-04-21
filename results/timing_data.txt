@@ -1,0 +1,34 @@
+Sample size 10:
+  Setup Time: Removed 0/500 outliers > 2ms
+  Solve Time: Removed 0/500 outliers > 100ms
+  Call Time: Removed 0/500 outliers > 400ms
+Sample size 50:
+  Setup Time: Removed 0/500 outliers > 2ms
+  Solve Time: Removed 1/500 outliers > 100ms
+  Call Time: Removed 0/500 outliers > 400ms
+Sample size 100:
+  Setup Time: Removed 0/500 outliers > 2ms
+  Solve Time: Removed 1/500 outliers > 100ms
+  Call Time: Removed 0/500 outliers > 400ms
+Sample size 500:
+  Setup Time: Removed 0/500 outliers > 2ms
+  Solve Time: Removed 1/500 outliers > 100ms
+  Call Time: Removed 1/500 outliers > 400ms
+Sample size 1000:
+  Setup Time: Removed 0/500 outliers > 2ms
+  Solve Time: Removed 1/500 outliers > 100ms
+  Call Time: Removed 1/500 outliers > 400ms
+Sample size 1500:
+  Setup Time: Removed 0/500 outliers > 2ms
+  Solve Time: Removed 1/500 outliers > 100ms
+  Call Time: Removed 1/500 outliers > 400ms
+
+Timing Comparison (times in ms):
+ Samples  DR-CVaR Setup  DR-CVaR Solve  DR-CVaR Call  CVaR Setup  CVaR Solve  CVaR Call
+      10       0.133503       1.746859      2.205166    0.139284    1.446113   1.905703
+      50       0.130341       3.734140      4.219767    0.136181    2.381083   2.843531
+     100       0.142427       6.370530      6.947499    0.145514    3.742313   4.271151
+     500       0.149513      30.584867     31.545633    0.157366   15.218606  15.882960
+    1000       0.160736      67.138577     69.011361    0.162387   35.460061  36.263448
+    1500       0.168318     146.577090    148.877589    0.168061   63.299383  64.256155
+
