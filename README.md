@@ -1,3 +1,11 @@
+# Distributionally Robust Conditional Value at Risk-based Safety Filtering for Motion Planning in Uncertain Environments
+
+This repository provides a custom implementation of the ICRA 2024 research paper titled "Distributionally Robust CVaR-Based Safety Filtering for Motion Planning in Uncertain Environments." This has been created from scratch by reading the paper and is an attempt to replicate some of the experiments in the orginal paper. 
+
+Link to the paper: https://arxiv.org/pdf/2309.08821
+
+Link to the official implementation of the paper: https://github.com/TSummersLab/dr-cvar-safety_filtering
+
 ## ⚙️ Setup Instructions
 
 Follow these steps to clone the repository and set up the Conda environment:
