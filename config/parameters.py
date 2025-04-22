@@ -1,9 +1,14 @@
+"""THESE PARAMETERS CAN BE UNCOMMENTED IN CASE YOU NEED TO RUN THE 
+   EXPERIMENTAL SCENARIOS WHICH WERE CUSTOM DESIGNED BY ME TO INVESTIGATE
+   THE EFFECTIVENESS OF THE ALGORITHM.
+"""
+
 """
 Configuration parameters for the DR-CVaR safety filtering implementation.
 """
 
 # Risk parameters
-ALPHA = 0.1          # CVaR confidence level (1-alpha quantile)
+ALPHA = 0.2          # CVaR confidence level (1-alpha quantile)
 DELTA = 0.1          # Risk bound 
 EPSILON = 0.15       # Wasserstein radius  
 
@@ -28,12 +33,17 @@ OBSTACLE_SPEED = 1.0   # Nominal speed of obstacles
 NUM_MC_RUNS = 300    # Number of Monte Carlo simulation runs
 
 
-# """
-# Configuration parameters for the DR-CVaR safety filtering implementation.
-# """
+"""THESE PARAMETERS CAN BE UNCOMMENTED IN CASE YOU NEED TO RUN THE 
+   EXPERIMENTAL SCENARIOS FROM THE RESEARCH PAPER TO TRY REPLICATING 
+   THE RESULTS. COMMENT OUT THE ABOVE CODE IN CASE YOU WANT TO DO THIS.
+"""
+
+"""
+Configuration parameters for the DR-CVaR safety filtering implementation.
+"""
 
 # # Risk parameters
-# ALPHA = 0.2          # CVaR confidence level (1-alpha quantile)
+# ALPHA = 0.1          # CVaR confidence level (1-alpha quantile)
 # DELTA = 0.1          # Risk bound 
 # EPSILON = 0.15       # Wasserstein radius  
 
@@ -56,5 +66,3 @@ NUM_MC_RUNS = 300    # Number of Monte Carlo simulation runs
 
 # # Monte Carlo parameters
 # NUM_MC_RUNS = 300    # Number of Monte Carlo simulation runs
-
-
