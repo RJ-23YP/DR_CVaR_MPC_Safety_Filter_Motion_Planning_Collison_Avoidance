@@ -103,9 +103,9 @@ python main.py --mode timing_analysis --sample_sizes 100,500,1000 --timing_runs 
 - Ensure all required modules are installed before running (e.g., `matplotlib`, `numpy`).
 
 
-## 🚗 Collision Avoidance Trajectory
+## Collision Avoidance Trajectory
 
-This section showcases the output of the DR-CVaR safety filtering algorithm applied to different motion planning scenarios. The GIFs below illustrate how the ego vehicle navigates around obstacles under various configurations.
+This section showcases the output of the DR-CVaR safety filtering algorithm applied to different motion planning scenarios. The GIFs below illustrate how the ego robot navigates around obstacles under various configurations.
 
 ---
 
