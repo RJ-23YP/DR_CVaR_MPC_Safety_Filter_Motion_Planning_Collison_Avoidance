@@ -3,12 +3,11 @@ Timing analysis for DR-CVaR safe halfspace computation.
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from utils.timing import Timer, TimingStats
-from core.halfspaces import MeanSafeHalfspace, CVaRSafeHalfspace, DRCVaRSafeHalfspace
+from utils.timing import Timer
+from core.halfspaces import CVaRSafeHalfspace, DRCVaRSafeHalfspace
 from config.parameters import ALPHA, DELTA, EPSILON, ROBOT_RADIUS, OBSTACLE_RADIUS
 import pandas as pd
 import os 
-import time
 import json 
 
 def analyze_dr_cvar_computation_time(sample_sizes=[10, 50, 100, 500, 1000, 1500], n_runs=50, save_dir=None):

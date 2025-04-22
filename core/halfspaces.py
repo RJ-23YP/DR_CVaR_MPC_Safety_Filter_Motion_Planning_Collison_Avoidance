@@ -4,9 +4,8 @@ Implementation of safe halfspaces for collision avoidance.
 import numpy as np
 import cvxpy as cp
 from utils.timing import timeit, Timer
-from core.geometry import support_function_circle, compute_separating_vector
-from core.risk_metrics import dr_cvar_halfspace, cvar_halfspace, save_timing_info
-import time 
+from core.geometry import compute_separating_vector
+from core.risk_metrics import dr_cvar_halfspace, cvar_halfspace
 import json
 
 class SafeHalfspace:

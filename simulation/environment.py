@@ -2,10 +2,8 @@
 Simulation environment for testing the DR-CVaR safety filtering.
 """
 import numpy as np
-from utils.timing import Timer
-from core.dynamics import create_double_integrator_matrices, simulate_linear_system
+from core.dynamics import create_double_integrator_matrices
 from core.halfspaces import compute_safe_halfspaces
-from core.geometry import signed_distance
 
 class SafetyFilteringEnvironment:
     """

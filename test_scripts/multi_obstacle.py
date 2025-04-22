@@ -1,5 +1,5 @@
 """
-Example script demonstrating the DR-CVaR safety filtering for multi-obstacle scenarios.
+Test Script for the DR-CVaR safety filtering for multi-obstacle scenarios.
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,7 +16,6 @@ from simulation.environment import SafetyFilteringEnvironment
 from simulation.obstacles import generate_obstacle_scenarios
 from simulation.planner import ReferenceTrajectoryPlanner
 from core.mpc_filter import MPCSafetyFilter
-from simulation.visualization import plot_scenario, plot_distance_to_collision
 from utils.timing import Timer, TimingStats
 
 def run_multi_obstacle_scenario(save_results=False, output_dir='results'):

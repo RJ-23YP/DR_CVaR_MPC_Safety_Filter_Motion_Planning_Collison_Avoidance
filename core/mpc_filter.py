@@ -94,10 +94,7 @@ class MPCSafetyFilter:
         if position_constraints is not None:
             pos_min, pos_max = position_constraints
             for t in range(1, self.horizon+1):
-                # position = self.C @ x[t]
-                # constraints.append(position >= pos_min)
-                # constraints.append(position <= pos_max)
-                
+                      
                 # Extract only position part (first 2 elements for a 2D scenario)
                 position = self.C @ x[t]  # This should give a 2D vector 
                 
@@ -113,25 +110,6 @@ class MPCSafetyFilter:
                     constraints.append(position >= pos_min)
                     constraints.append(position <= pos_max)
         
-        # # Safe halfspace constraints
-        # for t in range(1, self.horizon+1):
-        #     position = self.C @ x[t]
-            
-        #     if t-1 < len(safe_halfspaces):
-        #         halfspaces_t = safe_halfspaces[t-1]
- 
-        #          # DEBUG PRINTS
-        #         print(f"Halfspace constraints at step {t}: {len(halfspaces_t)}")
-        #         for i, halfspace in enumerate(halfspaces_t):
-        #             h, g = halfspace.get_constraint_params()
-        #             print(f"Halfspace {i}: h={h}, g={g}")
-        #         # END DEBUG PRINTS 
-                
-        #         for halfspace in halfspaces_t:
-        #             h, g = halfspace.get_constraint_params()
-        #             # constraints.append(cp.dot(h, position) + g <= 0)
-        #             # Replace cp.dot with cp.sum(cp.multiply())
-        #             constraints.append(cp.sum(cp.multiply(h, position)) + g <= 0) 
         
         # Add slack variables and safety costs for soft constraints
         safety_slacks = []

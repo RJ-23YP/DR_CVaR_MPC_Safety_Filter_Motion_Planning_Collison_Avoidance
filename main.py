@@ -3,7 +3,6 @@ Main entry point for testing the DR-CVaR safety filtering implementation.
 """
 import numpy as np 
 import matplotlib.pyplot as plt
-import time 
 import os 
 from config.parameters import *
 from config.scenarios import get_scenario_config
@@ -12,13 +11,9 @@ from simulation.environment import SafetyFilteringEnvironment
 from simulation.obstacles import generate_obstacle_scenarios
 from simulation.planner import ReferenceTrajectoryPlanner
 from core.mpc_filter import MPCSafetyFilter 
-from simulation.visualization import (
-    plot_scenario, plot_distance_to_collision, compare_risk_metrics, animate_scenario, visualize_trajectory_with_halfspaces
-)
+from simulation.visualization import animate_scenario, visualize_trajectory_with_halfspaces
 from utils.timing import Timer, TimingStats
-from evaluation.monte_carlo import run_monte_carlo_simulation
-from evaluation.metrics import safety_metrics
-import argparse
+import argparse 
 from evaluation.timing_analysis import analyze_dr_cvar_computation_time 
 
 def run_single_scenario(scenario_name, save_dir=None):
@@ -143,21 +138,6 @@ def run_single_scenario(scenario_name, save_dir=None):
     ) 
     
     # Plot the results
-
-    # # Trajectories
-    # plt.figure(figsize=(12, 10))
-    # plt.subplot(2, 2, 1)
-    # for i, obstacle_traj in enumerate(realization_trajectories):
-    #     plt.plot(obstacle_traj[:, 0], obstacle_traj[:, 1], 'k-', label=f'Obstacle {i}')
-    # plt.plot(x_ref[:, 0], x_ref[:, 1], 'r--', label='Reference')
-    # plt.plot(filtered_trajectories['mean'][:, 0], filtered_trajectories['mean'][:, 1], 'g-', label='Mean')
-    # plt.plot(filtered_trajectories['cvar'][:, 0], filtered_trajectories['cvar'][:, 1], 'b-', label='CVaR')
-    # plt.plot(filtered_trajectories['dr_cvar'][:, 0], filtered_trajectories['dr_cvar'][:, 1], 'm-', label='DR-CVaR')
-    # plt.title('Trajectories')
-    # plt.xlabel('x') 
-    # plt.ylabel('y')
-    # plt.grid(True)
-    # plt.legend()
     
     # Distance to collision
     # plt.subplot(2, 2, 2)
@@ -191,30 +171,6 @@ def run_single_scenario(scenario_name, save_dir=None):
         save_path=os.path.join(save_dir, f'{scenario_name}_{risk_metric}_halfspaces.png')
     )
     print(f"Halfspace visualization saved to {os.path.join(save_dir, f'{scenario_name}_{risk_metric}_halfspaces.png')}")
-
-    # # Velocities
-    # plt.subplot(2, 2, 3)
-    # plt.plot(x_ref[:, 2], x_ref[:, 3], 'r--', label='Reference')
-    # plt.plot(filtered_trajectories['mean'][:, 2], filtered_trajectories['mean'][:, 3], 'g-', label='Mean')
-    # plt.plot(filtered_trajectories['cvar'][:, 2], filtered_trajectories['cvar'][:, 3], 'b-', label='CVaR')
-    # plt.plot(filtered_trajectories['dr_cvar'][:, 2], filtered_trajectories['dr_cvar'][:, 3], 'm-', label='DR-CVaR')
-    # plt.title('Velocities')
-    # plt.xlabel('vx')
-    # plt.ylabel('vy')
-    # plt.grid(True)
-    # plt.legend()
-    
-    # # Control inputs
-    # plt.subplot(2, 2, 4)
-    # plt.plot(np.linalg.norm(u_ref, axis=1), 'r--', label='Reference')
-    # plt.plot(np.linalg.norm(filtered_inputs['mean'], axis=1), 'g-', label='Mean')
-    # plt.plot(np.linalg.norm(filtered_inputs['cvar'], axis=1), 'b-', label='CVaR')
-    # plt.plot(np.linalg.norm(filtered_inputs['dr_cvar'], axis=1), 'm-', label='DR-CVaR')
-    # plt.title('Control Inputs (norm)')
-    # plt.xlabel('Time step')
-    # plt.ylabel('Input norm')
-    # plt.grid(True)
-    # plt.legend() 
     
     # plt.tight_layout() 
     
@@ -228,86 +184,6 @@ def run_single_scenario(scenario_name, save_dir=None):
         'realization_trajectories': realization_trajectories,  # Add this
         'safe_halfspaces': safe_halfspaces  # Add this
     } 
-
-def run_monte_carlo_test(scenario_name, n_runs=100, save_dir=None):
-    """
-    Run Monte Carlo simulations for a given scenario.
-    
-    Args:
-        scenario_name: Name of the scenario
-        n_runs: Number of Monte Carlo runs 
-        save_dir: Directory to save results
-    """
-    # Create output directory if needed
-    if save_dir and not os.path.exists(save_dir):
-        os.makedirs(save_dir)
-    
-    # Get scenario configuration
-    scenario_config = get_scenario_config(scenario_name)
-    print(f"Running Monte Carlo simulations for scenario: {scenario_config['description']}")
-    
-    # Initialize environment
-    env = SafetyFilteringEnvironment(
-        ROBOT_RADIUS=ROBOT_RADIUS, 
-        OBSTACLE_RADIUS=OBSTACLE_RADIUS,
-        HORIZON=HORIZON, DT=DT,
-        ALPHA=ALPHA, DELTA=DELTA, 
-        EPSILON=EPSILON
-    )
-    
-    # Set up bounds
-    state_bounds = (np.array([-10, -10, -5, -5]), np.array([10, 10, 5, 5]))
-    input_bounds = (np.array([-5, -5]), np.array([5, 5]))
-    env.set_bounds(state_bounds, input_bounds)
-    
-    # Create a dictionary of parameters to pass to the Monte Carlo simulation
-    params_dict = {
-        'ROBOT_RADIUS': ROBOT_RADIUS,
-        'OBSTACLE_RADIUS': OBSTACLE_RADIUS,
-        'HORIZON': HORIZON,
-        'DT': DT,
-        'ALPHA': ALPHA,
-        'DELTA': DELTA,
-        'EPSILON': EPSILON,
-        'SIM_TIME': SIM_TIME,
-        'NUM_SAMPLES': NUM_SAMPLES,
-        'Q_WEIGHT': Q_WEIGHT,
-        'R_WEIGHT': R_WEIGHT
-    }
-    
-    # Create a simple class to hold parameters
-    class Params:
-        def __init__(self, **kwargs):
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-    
-    params = Params(**params_dict)
-    
-    # Run Monte Carlo simulations
-    mc_results = run_monte_carlo_simulation(env, scenario_config, n_runs, params)
-    
-    # Save results if directory is provided
-    if save_dir and mc_results is not None:
-        # Save the minimum distances
-        np.savez(
-            os.path.join(save_dir, f'{scenario_name}_mc_distances.npz'),
-            reference=mc_results['min_distances']['reference'],
-            mean=mc_results['min_distances']['mean'],
-            cvar=mc_results['min_distances']['cvar'],
-            dr_cvar=mc_results['min_distances']['dr_cvar']
-        )
-        
-        # Create and save a plot
-        fig, ax = plt.subplots(figsize=(10, 6))
-        compare_risk_metrics(
-            mc_results['min_distances']['mean'], 
-            mc_results['min_distances']['cvar'], 
-            mc_results['min_distances']['dr_cvar'],
-            title=f"Minimum Distance to Collision Comparison ({n_runs} runs)"
-        )
-        plt.savefig(os.path.join(save_dir, f'{scenario_name}_mc_boxplot.png'))
-    
-    return mc_results
 
 if __name__ == "__main__": 
     # Argument parser setup
@@ -323,16 +199,9 @@ if __name__ == "__main__":
         help="Scenario to run"
     )
 
-    # parser.add_argument(
-    #     "--mode", 
-    #     choices=['single', 'monte_carlo'], 
-    #     default='single',
-    #     help="Test mode to run"
-    # )
-
     parser.add_argument(
         "--mode", 
-        choices=['single', 'monte_carlo', 'timing_analysis'], 
+        choices=['single', 'timing_analysis'], 
         default='single',
         help="Test mode to run"
     ) 
@@ -349,13 +218,6 @@ if __name__ == "__main__":
         default='dr_cvar',
         help="Risk metric to animate"
     )
-
-    parser.add_argument(
-        "--runs", 
-        type=int, 
-        default=10,
-        help="Number of runs for Monte Carlo mode"
-    ) 
 
     parser.add_argument(
         "--sample_sizes", 
@@ -397,9 +259,6 @@ if __name__ == "__main__":
                 save_path=os.path.join(save_dir, f'{args.scenario}_{args.metric}_animation.mp4')
             )
             print(f"Animation saved to {os.path.join(save_dir, f'{args.scenario}_{args.metric}_animation.mp4')}")
-
-    elif args.mode == 'monte_carlo':
-        results = run_monte_carlo_test(args.scenario, n_runs=args.runs, save_dir=save_dir)
         
     elif args.mode == 'timing_analysis':
         print("\nRunning DR-CVaR computation time analysis...")

@@ -3,10 +3,8 @@ Visualization utilities for the DR-CVaR safety filtering.
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, Polygon
+from matplotlib.patches import Circle
 import matplotlib.cm as cm
-from matplotlib.collections import PatchCollection
-
 
 def plot_trajectory(ax, trajectory, color='b', marker='o', linestyle='-', markersize=4, label=None):
     """
@@ -379,137 +377,12 @@ def animate_scenario(ego_trajectory, obstacle_trajectories, robot_radius, obstac
 def evaluate_halfspace(h, g, positions):
     return np.dot(positions, h) + g 
 
-
-# def visualize_trajectory_with_halfspaces(ego_trajectory, obstacle_trajectories, safe_halfspaces, 
-#                                          robot_radius, obstacle_radius, xlim=(-5, 5), ylim=(-5, 5),
-#                                          title=None, save_path=None):
-#     """
-#     Visualize the ego trajectory, obstacles and safe halfspaces at each step.
-    
-#     Args:
-#         ego_trajectory: Ego robot trajectory [n_steps, n_states]
-#         obstacle_trajectories: List of obstacle trajectories [n_obstacles][n_steps, 2]
-#         safe_halfspaces: List of safe halfspaces for each timestep
-#         robot_radius: Radius of the ego robot
-#         obstacle_radius: Radius of the obstacles
-#         xlim, ylim: Limits of the plot
-#         title: Title of the plot
-#         save_path: Path to save the visualization
-        
-#     Returns:
-#         fig, ax: Matplotlib figure and axis objects
-#     """
-#     import matplotlib.pyplot as plt
-#     from matplotlib.patches import Circle
-#     import numpy as np
-    
-#     fig, ax = plt.subplots(figsize=(10, 8))
-    
-#     # Set plot limits and labels
-#     ax.set_xlim(xlim)
-#     ax.set_ylim(ylim)
-#     ax.set_aspect('equal')
-#     ax.set_xlabel('x [m]')
-#     ax.set_ylabel('y [m]')
-    
-#     # Add title if provided
-#     if title:
-#         ax.set_title(title)
-#     else:
-#         ax.set_title('Trajectory with Safe Halfspaces')
-    
-#     # Create a grid of points to visualize the halfspace intersections
-#     x = np.linspace(xlim[0], xlim[1], 300)
-#     y = np.linspace(ylim[0], ylim[1], 300)
-#     X, Y = np.meshgrid(x, y)
-#     grid_points = np.column_stack((X.flatten(), Y.flatten())) 
-    
-#     # Sample time steps to reduce clutter
-#     sampled_steps = range(0, len(safe_halfspaces), 3)
-    
-#     # For each time step, determine the safe region formed by the intersection of all halfspaces
-#     for t in sampled_steps:
-#         if t >= len(ego_trajectory):
-#             continue
-            
-#         # Create a safety mask (1 = safe, 0 = unsafe)
-#         safety_mask = np.ones(len(grid_points), dtype=bool)
-        
-#         # Apply each halfspace constraint
-#         for halfspace in safe_halfspaces[t]:
-#             h, g = halfspace.get_constraint_params()
-#             constraint_values = np.dot(grid_points, h) + g
-#             # Points where constraint_values <= 0 are inside the halfspace (safe)
-#             safety_mask = safety_mask & (constraint_values <= 0)
-        
-#         # Reshape to grid for visualization
-#         safety_grid = safety_mask.reshape(X.shape)
-        
-#         # Plot the safe region with a low alpha to show overlapping regions
-#         ax.contourf(X, Y, safety_grid, levels=[0.5, 1.5], colors=['green'], alpha=0.1)
-        
-#         # Plot the boundary of the safe region 
-#         ax.contour(X, Y, safety_grid, levels=[0.5], colors=['green'], linewidths=0.5, alpha=0.4)
-    
-#     # Plot the trajectories and robots
-#     # Plot ego trajectory
-#     ego_pos = ego_trajectory[:, :2]  # Extract position from state
-#     ax.plot(ego_pos[:, 0], ego_pos[:, 1], 'b-', linewidth=2, label='ego')
-    
-#     # Plot ego robot at selected positions
-#     for t in range(0, len(ego_trajectory), 2):  # Every 2nd position
-#         circle = Circle(ego_pos[t], robot_radius, color='blue', alpha=0.7)
-#         ax.add_patch(circle)
-#         # Add timestep label
-#         ax.text(ego_pos[t, 0], ego_pos[t, 1], str(t), color='white', 
-#                horizontalalignment='center', verticalalignment='center')
-    
-#     # Plot obstacle trajectories
-#     colors = ['red', 'orange', 'magenta', 'green']
-#     for i, obstacle_traj in enumerate(obstacle_trajectories):
-#         color = colors[i % len(colors)]
-#         label = f'ob{i}'
-#         ax.plot(obstacle_traj[:, 0], obstacle_traj[:, 1], '-', color=color, linewidth=2, label=label)
-        
-#         # Plot obstacle at selected positions
-#         for t in range(0, len(obstacle_traj), 4):  # Every 4th position
-#             circle = Circle(obstacle_traj[t], obstacle_radius, color=color, alpha=0.7)
-#             ax.add_patch(circle)
-#             # Add timestep label
-#             ax.text(obstacle_traj[t, 0], obstacle_traj[t, 1], str(t), color='white', 
-#                    horizontalalignment='center', verticalalignment='center')
-    
-#     ax.legend()
-#     ax.grid(True)
-    
-#     # if save_path:
-#     #     plt.savefig(save_path, dpi=300, bbox_inches='tight')
-
-#     # In the visualize_trajectory_with_halfspaces function, update the saving code:
-
-#     if save_path:
-#         # Make sure the figure is fully rendered before saving
-#         plt.tight_layout()
-        
-#         # Save with higher resolution and ensure the whole figure is saved
-#         fig.savefig(save_path, dpi=300, bbox_inches='tight', pad_inches=0.1, format='png')
-        
-#         # Close the figure to free memory
-#         plt.close(fig)
-    
-#     return fig, ax
-
-
 def visualize_trajectory_with_halfspaces(ego_trajectory, obstacle_trajectories, safe_halfspaces, 
                                          robot_radius, obstacle_radius, xlim=(-5, 5), ylim=(-5, 5),
                                          title=None, save_path=None):
     """
     Visualize the ego trajectory, obstacles and safe halfspaces at each step.
     """
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import Circle
-    import numpy as np
-    
     # Create figure with specific figsize with equal dimensions
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(111)
