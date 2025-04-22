@@ -94,3 +94,6 @@ python main.py --mode timing_analysis --sample_sizes 100,500,1000 --timing_runs 
 - Set a fixed seed for reproducibility (`np.random.seed(42)` is used).
 - Ensure all required modules are installed before running (e.g., `matplotlib`, `numpy`).
 
+
+![Alt Text](results/Custom Scenarios/multi_obstacle_dr_cvar_animation.gif) 
+
