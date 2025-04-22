@@ -95,3 +95,42 @@ python main.py --mode timing_analysis --sample_sizes 100,500,1000 --timing_runs 
 - Ensure all required modules are installed before running (e.g., `matplotlib`, `numpy`).
 
 <img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/>
+
+## 🚗 Collision Avoidance Trajectory
+
+This section showcases the output of the DR-CVaR safety filtering algorithm applied to different motion planning scenarios. The GIFs below illustrate how the ego vehicle navigates around obstacles under various configurations.
+
+---
+
+### 🔧 Custom Scenarios
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+    </tr>
+    <tr>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+    </tr>
+  </table>
+</div>
+
+---
+
+### 📄 Paper Scenarios
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+    </tr>
+    <tr>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+    </tr>
+  </table>
+</div>
+
