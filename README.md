@@ -32,6 +32,65 @@ conda activate dr_cvar_safety_filtering
 
 💡 If you face any issues during setup, make sure your Conda installation is up to date and restart your terminal after creating the environment. Remember to source the conda environment everytime you want to activate it. 
 
+## 📁 Project Structure
+
+This repository is organized into modular folders and files for clarity, scalability, and ease of experimentation. Below is a brief description of each component:
+
+---
+
+### 🛠`config/`
+- **`parameters.py`**: Defines key system parameters such as risk levels, robot dimensions, time horizon, and other simulation settings.
+- **`scenarios.py`**: Implements various test scenarios, including head-on collisions, overtaking, intersection, and more.
+
+---
+
+### `core/`
+- **`dynamics.py`**: Provides linear system models for robot motion using single or double integrators.
+- **`geometry.py`**: Contains geometric utilities for collision detection and distance calculations.
+- **`halfspaces.py`**: Implements safe halfspace representations under different risk metrics.
+- **`mpc_filter.py`**: Core implementation of the MPC-based safety filtering algorithm.
+- **`risk_metrics.py`**: Defines risk assessment strategies, including CVaR and DR-CVaR.
+
+---
+
+### `evaluation/`
+- **`metrics.py`**: Computes performance metrics for safety evaluation (e.g., collision rates).
+- **`timing_analysis.py`**: Contains tools for analyzing the computation time of safety filtering algorithms.
+
+---
+
+### `results/`
+This folder stores all output and experimental data:
+- **Custom Scenarios** – contains animations and plots from user-defined scenarios.
+- **Paper Scenarios** – contains experimental results that mimic configurations found in literature.
+- **Timing Analysis** – includes performance and timing evaluation outputs.
+
+New outputs from script runs are automatically saved in this directory.
+
+---
+
+### `simulation/`
+- **`environment.py`**: Sets up the simulation environment, including safety bounds and robot/obstacle configurations.
+- **`obstacles.py`**: Generates obstacle trajectories incorporating uncertainty.
+- **`planner.py`**: Handles reference trajectory planning between start and goal states.
+- **`visualization.py`**: Visualization tools for animating and plotting trajectories, safety bounds, and distances.
+
+---
+
+### `utils/`
+- **`math_utils.py`**: Provides helper functions for vector operations and geometry.
+- **`timing.py`**: Utility functions for measuring and logging computation time of various components.
+
+---
+
+### Root Directory
+- **`main.py`**: Entry-point script that provides a command-line interface for running scenarios, generating animations, and performing timing analysis.
+
+---
+
+Let me know if you'd like to turn this into a collapsible section or enhance it with emoji icons or links to files!
+
+
 
 ## 🔧 How to Run the Code
 
