@@ -114,12 +114,12 @@ This section showcases the output of the DR-CVaR safety filtering algorithm appl
 <div align="center">
   <table>
     <tr>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Custom_Scenarios/intersection_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="300" height="300"/></td>
+      <td><img src="results/Custom_Scenarios/intersection_dr_cvar_animation.gif" width="300" height="300"/></td>
     </tr>
     <tr>
-      <td><img src="results/Custom_Scenarios/overtaking_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Custom_Scenarios/head_on_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/overtaking_dr_cvar_animation.gif" width="300" height="300"/></td>
+      <td><img src="results/Custom_Scenarios/head_on_dr_cvar_animation.gif" width="300" height="300"/></td>
     </tr>
   </table>
 </div>
@@ -131,12 +131,12 @@ This section showcases the output of the DR-CVaR safety filtering algorithm appl
 <div align="center">
   <table>
     <tr>
-      <td><img src="results/Paper_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Paper_Scenarios/intersection_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Paper_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="300" height="300"/></td>
+      <td><img src="results/Paper_Scenarios/intersection_dr_cvar_animation.gif" width="300" height="300"/></td>
     </tr>
     <tr>
-      <td><img src="results/Paper_Scenarios/overtaking_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Paper_Scenarios/head_on_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Paper_Scenarios/overtaking_dr_cvar_animation.gif" width="300" height="300"/></td>
+      <td><img src="results/Paper_Scenarios/head_on_dr_cvar_animation.gif" width="300" height="300"/></td>
     </tr>
   </table>
 </div>
