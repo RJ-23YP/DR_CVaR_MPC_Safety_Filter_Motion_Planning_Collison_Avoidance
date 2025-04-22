@@ -1,3 +1,30 @@
+## ⚙️ Setup Instructions
+
+Follow these steps to clone the repository and set up the Conda environment:
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone git@github.com:RJ-23YP/DR_CVaR_MPC_Safety_Filter_Motion_Planning_Collison_Avoidance.git
+cd DR_CVaR_MPC_Safety_Filter_Motion_Planning_Collison_Avoidance
+```
+
+### 2️⃣ Create and Activate the Conda Environment
+
+Make sure you have [Conda](https://docs.conda.io/en/latest/miniconda.html) installed. Then run:
+
+```bash
+conda env create -f environment.yml
+conda activate dr_cvar_safety_filtering 
+```
+
+📦 This will install all required dependencies listed in the `environment.yml` file into a new conda environment named `dr_cvar_safety_filtering`.
+
+---
+
+💡 If you face any issues during setup, make sure your Conda installation is up to date and restart your terminal after creating the environment. Remember to source the conda environment everytime you want to activate it. 
+
+
 ## 🔧 How to Run the Code
 
 This project provides a flexible simulation environment for testing safety filtering using DR-CVaR and other risk metrics. You can run predefined scenarios, generate visualizations, and perform timing analysis. Below are instructions for using the script via command line.
