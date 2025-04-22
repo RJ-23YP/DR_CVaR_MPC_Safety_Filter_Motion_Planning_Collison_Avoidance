@@ -94,7 +94,6 @@ python main.py --mode timing_analysis --sample_sizes 100,500,1000 --timing_runs 
 - Set a fixed seed for reproducibility (`np.random.seed(42)` is used).
 - Ensure all required modules are installed before running (e.g., `matplotlib`, `numpy`).
 
-<img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/>
 
 ## 🚗 Collision Avoidance Trajectory
 
@@ -108,11 +107,11 @@ This section showcases the output of the DR-CVaR safety filtering algorithm appl
   <table>
     <tr>
       <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/intersection_dr_cvar_animation.gif" width="500" height="500"/></td>
     </tr>
     <tr>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/overtaking_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Custom_Scenarios/head_on_dr_cvar_animation.gif" width="500" height="500"/></td>
     </tr>
   </table>
 </div>
@@ -124,12 +123,12 @@ This section showcases the output of the DR-CVaR safety filtering algorithm appl
 <div align="center">
   <table>
     <tr>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Paper_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Paper_Scenarios/intersection_dr_cvar_animation.gif" width="500" height="500"/></td>
     </tr>
     <tr>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
-      <td><img src="results/Custom_Scenarios/multi_obstacle_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Paper_Scenarios/overtaking_dr_cvar_animation.gif" width="500" height="500"/></td>
+      <td><img src="results/Paper_Scenarios/head_on_dr_cvar_animation.gif" width="500" height="500"/></td>
     </tr>
   </table>
 </div>
